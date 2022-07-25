@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Switcher</string>
+    <string name="action_settings">Settings</string>
+    <string name="env_change_success">Change Env Success</string>
+</resources>

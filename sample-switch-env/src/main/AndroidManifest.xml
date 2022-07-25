@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.loopnow.envconfig.switchsample">
+
+    <application>
+
+        <activity
+            android:name="com.loopnow.envconfig.switcher.EnvSwitchActivity"
+            android:exported="true"
+            android:theme="@style/Theme.EnvConfig" />
+
+        <provider
+            android:name="com.loopnow.envconfig.switcher.EnvProvider"
+            android:authorities="${applicationId}.env.config"
+            android:exported="true"
+            android:permission="com.loopnow.envconfig">
+
+            <intent-filter>
+                <action android:name="com.loopnow.envconfig" />
+            </intent-filter>
+
+        </provider>
+    </application>
+
+</manifest>
