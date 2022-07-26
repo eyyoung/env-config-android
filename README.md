@@ -1,5 +1,7 @@
 # Environment Switcher for Android
 
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/eyyoung/env-config-android)
+
 ## About Repo
 
 During the development period, we may need to switch different environment variables to support different dev environments.
