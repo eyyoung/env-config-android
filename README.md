@@ -1,6 +1,6 @@
 # Environment Switcher for Android
 
-![GitHub release (latest by date)](https://img.shields.io/github/v/release/eyyoung/env-config-android)
+![JitPack](https://img.shields.io/jitpack/v/github/eyyoung/env-config-android)
 
 ## About Repo
 
@@ -18,44 +18,18 @@ This repo is focused to support switching the environment variables in a simple 
 ```gradle
 repositories {
     maven {
-        url = uri("https://maven.pkg.github.com/eyyoung/env-config-android")
+        url "https://jitpack.io"
     }
 }
 
 dependencies {
-    implementation 'com.loopnow.envconfig:switcher:$version'
+    implementation 'com.github.eyyoung.env-config-android:switcher:$version'
 }
 ```
 
 ## Sample and how to use
 
-Sample have for modules
-
-### sample
-
-this is a sample to provide how to switch and read variables.
-
-Usage:
-
-* get Env value
-
-```kotlin
-Env.getEnv(com.loopnow.envconfig.switchsample.R.attr.baseUrl)
-```
-
-* Start Env Switchment Activity
-
-```kotlin
-val componentName =
-    ComponentName(this, "com.loopnow.envconfig.switcher.EnvSwitchActivity")
-startActivity(Intent().setComponent(componentName))
-```
-
-* Only expose variable value in debug package
-
-```gradle
-debugImplementation project(':sample-switch-env')
-```
+Sample have four module
 
 ### sample-schema
 
@@ -83,16 +57,42 @@ Usage:
 </style>
 ```
 
+### sample
+
+this is a sample to provide how to switch and read variables.
+
+Usage:
+
+* get Env value
+
+```kotlin
+Env.getEnv(com.loopnow.env.config.sample.schema.R.attr.baseUrl)
+```
+
+* Start Env Switchment Activity
+
+```kotlin
+val componentName =
+    ComponentName(this, "com.loopnow.envconfig.switcher.EnvSwitchActivity")
+startActivity(Intent().setComponent(componentName))
+```
+
+* Only expose variable value in debug package
+
+```gradle
+debugImplementation project(':sample-switch-env')
+```
+
 #### sample-switch-env
 
-this is a sample to provide how to define variable schema and value
+this is a sample to provide how to package diffrent product flavor by using diffrent variables
 
 Usage:
 
 * Add Dependency
 
 ```
-implementation 'com.loopnow.envconfig:switcher:$version'
+implementation 'com.github.eyyoung.env-config-android:switcher:$version'
 ```
 
 * Expose Activity Switchment and Theme (not required if you do not need switchment UI)
