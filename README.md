@@ -29,7 +29,7 @@ dependencies {
 
 ## Sample and how to use
 
-Sample have three modules
+Sample have for modules
 
 ### sample
 
@@ -57,17 +57,11 @@ startActivity(Intent().setComponent(componentName))
 debugImplementation project(':sample-switch-env')
 ```
 
-#### sample-switch-env
+### sample-schema
 
-this is a sample to provide how to define variable schema and value
+This is a sample schema module to define the environment schema
 
 Usage:
-
-* Add Dependency
-
-```
-implementation 'com.loopnow.envconfig:switcher:$version'
-```
 
 * Schema definition
 
@@ -87,6 +81,18 @@ implementation 'com.loopnow.envconfig:switcher:$version'
 <style name="EnvironmentValue">
     <item name="baseUrl">http://dev.url</item>
 </style>
+```
+
+#### sample-switch-env
+
+this is a sample to provide how to define variable schema and value
+
+Usage:
+
+* Add Dependency
+
+```
+implementation 'com.loopnow.envconfig:switcher:$version'
 ```
 
 * Expose Activity Switchment and Theme (not required if you do not need switchment UI)
