@@ -70,7 +70,7 @@ class SwitchFragment : Fragment() {
 
         val queryIntentContentProviders =
             requireContext().packageManager.queryIntentContentProviders(
-                Intent("com.loopnow.envconfig"),
+                Intent(requireContext().getTargetProviderFilter()),
                 PackageManager.GET_META_DATA
             )
         queryIntentContentProviders.first()?.let {

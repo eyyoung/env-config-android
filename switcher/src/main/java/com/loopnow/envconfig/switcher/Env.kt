@@ -1,8 +1,16 @@
 package com.loopnow.envconfig.switcher
 
 import android.content.Context
+import android.content.pm.PackageManager
 import org.json.JSONObject
 import java.lang.IllegalArgumentException
+
+fun Context.getTargetProviderFilter(): String? {
+    return packageManager.getApplicationInfo(
+        packageName,
+        PackageManager.GET_META_DATA
+    ).metaData.getString("com.loopnow.envconfig.target.filter")
+}
 
 object Env {
 

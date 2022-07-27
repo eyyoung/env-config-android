@@ -49,19 +49,17 @@ Usage:
 </style>
 ```
 
-* different product flavors for different value
-
-```xml
-<style name="EnvironmentValue">
-    <item name="baseUrl">http://dev.url</item>
-</style>
-```
-
 ### sample
 
 this is a sample to provide how to switch and read variables.
 
 Usage:
+
+* Add Dependency
+
+```
+implementation 'com.github.eyyoung.env-config-android:switcher:$version'
+```
 
 * get Env value
 
@@ -95,6 +93,14 @@ Usage:
 implementation 'com.github.eyyoung.env-config-android:switcher:$version'
 ```
 
+* different product flavors for different value
+
+```xml
+<style name="EnvironmentValue">
+    <item name="baseUrl">http://dev.url</item>
+</style>
+```
+
 * Expose Activity Switchment and Theme (not required if you do not need switchment UI)
 
 ```xml
@@ -114,10 +120,15 @@ implementation 'com.github.eyyoung.env-config-android:switcher:$version'
     android:permission="com.loopnow.envconfig">
 
     <intent-filter>
-        <action android:name="com.loopnow.envconfig" />
+        <action android:name="com.loopnow.envconfig.sample" />
     </intent-filter>
 
 </provider>
+
+<meta-data
+    android:name="com.loopnow.envconfig.target.filter"
+    android:value="com.loopnow.envconfig.sample"
+    tools:node="replace" />
 ```
 
 * Assets Json definition(this json is used both for switchment UI and external switch module)
@@ -159,8 +170,18 @@ api project(":sample-switch-env")
     android:name="com.loopnow.envconfig.switcher.EnvProvider"
     android:authorities="${applicationId}.env.config"
     android:exported="true"
-    android:permission="com.loopnow.envconfig">
+    android:permission="com.loopnow.envconfig.sample">
 </provider>
+```
+
+* Declare the uses permission so that we can access the target process
+
+```xml
+<uses-permission
+    android:name="android.permission.QUERY_ALL_PACKAGES"
+    tools:ignore="QueryAllPackagesPermission" />
+
+<uses-permission android:name="com.loopnow.envconfig.sample" />
 ```
 
 ## Implementation

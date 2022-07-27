@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.loopnow.envconfig.switchsample">
+
+    <permission
+        android:name="com.loopnow.envconfig.sample"
+        android:label="Switch Env"
+        android:protectionLevel="normal" />
 
     <application>
 
@@ -13,13 +19,19 @@
             android:name="com.loopnow.envconfig.switcher.EnvProvider"
             android:authorities="${applicationId}.env.config"
             android:exported="true"
-            android:permission="com.loopnow.envconfig">
+            android:permission="com.loopnow.envconfig.sample">
 
             <intent-filter>
-                <action android:name="com.loopnow.envconfig" />
+                <action android:name="com.loopnow.envconfig.sample" />
             </intent-filter>
 
         </provider>
+
+        <meta-data
+            android:name="com.loopnow.envconfig.target.filter"
+            android:value="com.loopnow.envconfig.sample"
+            tools:node="replace" />
+
     </application>
 
 </manifest>

@@ -3,12 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.loopnow.envconfig">
 
-
     <uses-permission
         android:name="android.permission.QUERY_ALL_PACKAGES"
         tools:ignore="QueryAllPackagesPermission" />
 
-    <uses-permission android:name="com.loopnow.envconfig" />
+    <uses-permission android:name="com.loopnow.envconfig.sample" />
 
     <application
         android:allowBackup="true"
@@ -31,12 +30,11 @@
         </activity>
 
         <provider
-            tools:node="remove"
             android:name="com.loopnow.envconfig.switcher.EnvProvider"
             android:authorities="${applicationId}.env.config"
             android:exported="true"
-            android:permission="com.loopnow.envconfig">
-        </provider>
+            android:permission="com.loopnow.envconfig.sample"
+            tools:node="remove" />
 
     </application>
 

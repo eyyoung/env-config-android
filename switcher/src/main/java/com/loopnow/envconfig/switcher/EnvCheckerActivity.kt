@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.loopnow.envconfig.switcher.databinding.EnvActivityEnvCheckerBinding
 import org.json.JSONObject
+import java.lang.IllegalArgumentException
 
 
 class EnvCheckerActivity : AppCompatActivity() {
@@ -21,13 +22,13 @@ class EnvCheckerActivity : AppCompatActivity() {
         setContentView(binding.root)
         val queryIntentContentProviders =
             packageManager.queryIntentContentProviders(
-                Intent("com.loopnow.envconfig"),
+                Intent(getTargetProviderFilter()),
                 PackageManager.GET_META_DATA
             )
         queryIntentContentProviders.first()?.let {
             targetAuth = it.providerInfo.authority
             binding.tvTargetProcess.text = "Target Process: \n${it.providerInfo.packageName}"
-        }
+        } ?: throw IllegalArgumentException("Failed to search target process")
         val cursor = contentResolver.query(
             Uri.parse("content://${targetAuth}/env"), null, null, null,
             null

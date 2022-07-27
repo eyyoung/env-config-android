@@ -1,4 +1,4 @@
-group = "com.loopnow.envconfig"
+group = "com.github.eyyoung.env-config-android"
 
 version = POM_VERSION
 
@@ -12,16 +12,6 @@ android {
 
 afterEvaluate {
     publishing {
-        repositories {
-            maven {
-                name = "GitHubPackages"
-                url = uri("https://maven.pkg.github.com/eyyoung/env-config-android")
-                credentials {
-                    username = project.findProperty("gpr.young.user") ?: System.getenv("USERNAME")
-                    password = project.findProperty("gpr.young.key") ?: System.getenv("TOKEN")
-                }
-            }
-        }
         publications {
             release(MavenPublication) {
                 from components.release
