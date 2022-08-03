@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     package="com.loopnow.envconfig.switcher">
 
     <application>
@@ -11,14 +10,10 @@
             android:process=":envchecker" />
 
         <provider
-            android:name="androidx.startup.InitializationProvider"
-            android:authorities="${applicationId}.androidx-startup"
-            android:exported="false"
-            tools:node="merge">
-            <meta-data
-                android:name="com.loopnow.envconfig.switcher.EnvInitializer"
-                android:value="androidx.startup" />
-        </provider>
+            android:name="com.loopnow.envconfig.switcher.EnvProvider"
+            android:authorities="${applicationId}.env.config"
+            android:exported="true"
+            android:permission="com.loopnow.envconfig.sample" />
 
         <meta-data
             android:name="com.loopnow.envconfig.target.filter"

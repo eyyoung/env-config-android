@@ -1,5 +1,6 @@
 package com.loopnow.envconfig.switcher
 
+import android.app.Application
 import android.content.ContentProvider
 import android.content.ContentValues
 import android.content.Context
@@ -10,10 +11,12 @@ import android.os.Handler
 import android.os.Looper
 import android.util.Log
 import org.json.JSONObject
+import java.lang.IllegalStateException
 import kotlin.system.exitProcess
 
 class EnvProvider : ContentProvider() {
     override fun onCreate(): Boolean {
+        EnvInitializer.init(context ?: throw IllegalStateException("Won't happen"))
         return true
     }
 
@@ -23,7 +26,7 @@ class EnvProvider : ContentProvider() {
         selection: String?,
         selectionArgs: Array<out String>?,
         sortOrder: String?
-    ): Cursor? {
+    ): Cursor{
         val env = JSONObject(Env.envMap.toMap()).toString()
         return MatrixCursor(arrayOf("env")).apply {
             addRow(arrayOf(env))
@@ -38,7 +41,7 @@ class EnvProvider : ContentProvider() {
         values ?: return null
         Env.changeEnv(values.getAsString("env"))
         Handler(Looper.getMainLooper()).postDelayed({
-            Runtime.getRuntime().exit(0);
+            Runtime.getRuntime().exit(0)
         }, 500)
         return null
     }
@@ -46,7 +49,7 @@ class EnvProvider : ContentProvider() {
     override fun delete(uri: Uri, selection: String?, selectionArgs: Array<out String>?): Int {
         Env.initPackaged(true)
         Handler(Looper.getMainLooper()).postDelayed({
-            Runtime.getRuntime().exit(0);
+            Runtime.getRuntime().exit(0)
         }, 500)
         return 0
     }
@@ -62,7 +65,7 @@ class EnvProvider : ContentProvider() {
         Log.d("EnvConfig", "Env Provider change env $env")
         Env.changeEnvByJson(env)
         Handler(Looper.getMainLooper()).postDelayed({
-            Runtime.getRuntime().exit(0);
+            Runtime.getRuntime().exit(0)
         }, 500)
         return 0
     }
